@@ -4,6 +4,22 @@
 #include "stdafx.h"
 #include "unit_tests.h"
 
+
+
+void foo()
+{
+	//unit_test::test_boost_filesystem();
+	//test_openssl_filehash();
+	auto folder_path = std::string(R"(C:\Users\user\Desktop\test)");
+	sync_root sr(folder_path);
+	sr.walk_file_system();
+}
+
+
+
+
+
+
 clock_t user_start(std::vector<std::string> argv)
 {
 	boost::filesystem::path exe(argv[0]);
@@ -60,11 +76,6 @@ int user_exit(std::vector<std::string> argv, clock_t start_time)
 	return 0;
 }
 
-void foo()
-{
-	//unit_test::test_boost_filesystem();
-	test_openssl_filehash();
-}
 
 int main(int argc, char* arga[])
 {

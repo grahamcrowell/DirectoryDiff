@@ -77,4 +77,6 @@
  * my headers
  */
 #include "hash_path.h"
+#include "sync_root.h"
+
 // TODO: reference additional headers your program requires here
