@@ -8,9 +8,9 @@
 
 void foo()
 {
-	test_hash_path_operators();
+	//test_hash_path_operators();
 	
-	//test_dir_cmp();
+	test_dir_cmp();
 }
 
 

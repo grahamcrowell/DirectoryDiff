@@ -50,6 +50,30 @@ std::string hash_path::get_hash_digest()
 	}
 }
 
+hash_cmp hash_path::get_hash_digest_cmp()
+{
+	struct hash_digest_cmp
+	{
+		bool operator()(hash_path& lhs, hash_path& rhs) const
+		{
+			return lhs.get_hash_digest() < rhs.get_hash_digest();
+		}
+	};
+	hash_cmp cmp = hash_digest_cmp();
+	return cmp;
+}
+hash_cmp hash_path::get_full_path_cmp()
+{
+	struct full_path_cmp
+	{
+		bool operator()(hash_path& lhs, hash_path& rhs) const
+		{
+			return lhs.generic_string() < rhs.generic_string();
+		}
+	};
+	hash_cmp cmp = full_path_cmp();
+	return cmp;
+}
 hash_path::~hash_path()
 {
 }

@@ -43,6 +43,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/thread/thread.hpp> // for sleeping at exit
+#include <boost/function.hpp> // for comparison hash_path overloads
 /*
 *
 *Boost Graph Library includes
