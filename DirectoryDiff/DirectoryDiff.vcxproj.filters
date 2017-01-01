@@ -33,6 +33,9 @@
     <ClInclude Include="sync_root.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dir_cmp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sync_root.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dir_cmp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

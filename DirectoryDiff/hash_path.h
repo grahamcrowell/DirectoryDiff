@@ -25,3 +25,15 @@ protected:
 
 
 };
+inline bool operator==(hash_path& lhs, hash_path& rhs)
+{
+	return lhs.get_hash_digest() == rhs.get_hash_digest();
+}
+inline bool operator!=(hash_path& lhs, hash_path& rhs) { return !operator==(lhs, rhs); }
+inline bool operator< (hash_path& lhs, hash_path& rhs)
+{
+	return lhs.get_hash_digest() < rhs.get_hash_digest();
+}
+inline bool operator> (hash_path& lhs, hash_path& rhs) { return  operator< (rhs, lhs); }
+inline bool operator<=(hash_path& lhs, hash_path& rhs) { return !operator> (lhs, rhs); }
+inline bool operator>=(hash_path& lhs, hash_path& rhs) { return !operator< (lhs, rhs); }

@@ -151,6 +151,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dir_cmp.h" />
     <ClInclude Include="hash_path.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="sync_root.h" />
@@ -159,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DirectoryDiff.cpp" />
+    <ClCompile Include="dir_cmp.cpp" />
     <ClCompile Include="hash_path.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

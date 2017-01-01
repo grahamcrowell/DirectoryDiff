@@ -13,5 +13,6 @@ public:
 	std::vector<hash_path>::iterator begin();
 	std::vector<hash_path>::iterator end();
 	~sync_root();
+	friend std::ostream & operator<<(std::ostream &os, const sync_root& sr);
 };
 

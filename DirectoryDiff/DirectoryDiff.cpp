@@ -8,11 +8,9 @@
 
 void foo()
 {
-	//unit_test::test_boost_filesystem();
-	//test_openssl_filehash();
-	auto folder_path = std::string(R"(C:\Users\user\Desktop\test)");
-	sync_root sr(folder_path);
-	sr.walk_file_system();
+	test_hash_path_operators();
+	
+	//test_dir_cmp();
 }
 
 
@@ -55,13 +53,23 @@ int user_exit(std::vector<std::string> argv, clock_t start_time)
 	{
 		while (!get_key_press(&key) && remaining_delay_milliseconds > 0)
 		{
+			if (remaining_delay_milliseconds % 1000 == 0 && remaining_delay_milliseconds <= 3000)
+			{
+				std::cout << remaining_delay_milliseconds / 1000 << " seconds" << std::endl;
+			}
 			//std::cout << "sleeping for: " << sleep_time << std::endl;
 			remaining_delay_milliseconds -= sleep_time_milliseconds;
 			boost::this_thread::sleep(boost::posix_time::milliseconds(sleep_time_milliseconds));
+			
 		}
 		if (key==RETURN)
 		{
-			std::cout << "You Pressed: RETURN " << std::endl;
+			std::cout << "RETURN delay override. " << std::endl;
+			if (remaining_delay_milliseconds < 3000)
+			{
+				remaining_delay_milliseconds = 10*60*1e3;
+			}
+			key = ' ';
 		}
 		else if (key == ESCAPE)
 		{

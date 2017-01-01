@@ -1,6 +1,49 @@
 #pragma once
 //#include "hash_path.h"
 
+
+
+void test_dir_cmp()
+{
+	auto src_dir = std::string(R"(C:\Users\user\Desktop\sync_test\testSrc)");
+	sync_root src_sr(src_dir);
+	auto dst_dir = std::string(R"(C:\Users\user\Desktop\sync_test\testDst)");
+	sync_root dst_sr(src_dir);
+	std::vector<hash_path> diff;
+	std::set_difference(src_sr.begin(), src_sr.end(), dst_sr.begin(), dst_sr.end(),
+		std::inserter(diff, diff.begin()),[&](auto &src, auto &dst)
+	{
+		return false;
+	});
+	for (auto i : src_sr) std::cout << i << ' ';
+	std::cout << "minus ";
+	for (auto i : dst_sr) std::cout << i << ' ';
+	std::cout << "is: ";
+
+	for (auto i : diff) std::cout << i << ' ';
+	std::cout << '\n';
+}
+
+void test_hash_path_operators()
+{
+	auto folder_path = std::string(R"(C:\Users\user\Desktop\sync_test\testSrc)");
+	sync_root sr(folder_path);
+	sr.walk_file_system();
+	std::cout << sr << std::endl;
+	std::random_shuffle(sr.begin(), sr.end());
+	std::cout << sr << std::endl;
+	std::sort(sr.begin(), sr.end());
+	std::cout << sr << std::endl;
+}
+
+void test_sync_root()
+{
+	auto folder_path = std::string(R"(C:\Users\user\Desktop\sync_test\testSrc)");
+	sync_root sr(folder_path);
+	sr.walk_file_system();
+	std::cout << sr.begin()->get_hash_digest() << std::endl;
+}
+
 void test_boost_filesystem()
 {
 	using namespace std::string_literals;

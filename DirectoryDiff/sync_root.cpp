@@ -61,3 +61,15 @@ std::vector<hash_path>::iterator sync_root::end()
 sync_root::~sync_root()
 {
 }
+
+std::ostream& operator<<(std::ostream& os, const sync_root& sr)
+{
+	os << "sync_root object:" <<
+		"\t" + sr._path.string() <<
+		std::endl;
+	for_each(sr._files.begin(), sr._files.end(),[&](auto &hp)
+	{
+		os << hp << std::endl;
+	});
+	return os;
+}
