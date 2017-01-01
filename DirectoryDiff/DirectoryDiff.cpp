@@ -10,7 +10,8 @@ void foo()
 {
 	//test_sync_root_sort();
 	
-	test_set_diff();
+	//test_set_diff();
+	perf_sync_root();
 }
 
 

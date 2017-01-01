@@ -2,6 +2,38 @@
 //#include "hash_path.h"
 
 
+void perf_sync_root()
+{
+	clock_t start_time=0, end_time=0;
+	float runtime_ticks=0, walk_runtime_seconds=0, hash_runtime_seconds=0;
+
+	start_time = clock();
+
+	auto folder_path = std::string(R"(F:\data\fusion)");
+	sync_root sr(folder_path);
+	sr.walk_file_system();
+
+	end_time = clock();
+	runtime_ticks = ((float)end_time - (float)start_time);
+	walk_runtime_seconds = runtime_ticks / CLOCKS_PER_SEC;
+	std::cout << "walk_runtime_seconds: " << walk_runtime_seconds << " seconds" << std::endl;
+	
+	start_time = clock();
+
+	for_each(sr.begin(),sr.end(), [&](hash_path &hp)
+	{
+		hp.get_hash_digest();
+	});
+
+	end_time = clock();
+	runtime_ticks = ((float)end_time - (float)start_time);
+	hash_runtime_seconds = runtime_ticks / CLOCKS_PER_SEC;
+
+	std::cout << std::endl << std::endl << std::endl << std::endl;
+	std::cout << "walk_runtime_seconds: " << walk_runtime_seconds << " seconds" << std::endl;
+	std::cout << "hash_runtime_seconds: " << hash_runtime_seconds << " seconds" << std::endl;
+	getchar();
+}
 
 void test_set_diff()
 {
@@ -9,16 +41,16 @@ void test_set_diff()
 	sync_root src_sr(src_dir);
 	src_sr.walk_file_system();
 	std::sort(src_sr.begin(), src_sr.end(), hash_path::get_hash_digest_lt());
-	
+
 	auto dst_dir = std::string(R"(C:\Users\user\Desktop\sync_test\testDst)");
 	sync_root dst_sr(dst_dir);
 	dst_sr.walk_file_system();
 	std::sort(dst_sr.begin(), dst_sr.end(), hash_path::get_hash_digest_lt());
-	
+
 	std::vector<hash_path> diff;
 	std::set_difference(src_sr.begin(), src_sr.end(), dst_sr.begin(), dst_sr.end(),
-		std::inserter(diff, diff.begin()),hash_path::get_hash_digest_lt());
-	
+		std::inserter(diff, diff.begin()), hash_path::get_hash_digest_lt());
+
 	std::cout << src_sr << std::endl;
 	//for (auto i : src_sr._files) std::cout << i << ' ';
 	std::cout << "minus ";
@@ -28,7 +60,7 @@ void test_set_diff()
 
 	for (auto i : diff) std::cout << i.generic_string() << std::endl;
 	std::cout << '\n';
-	
+
 	std::cout << diff.size() << std::endl;
 }
 
@@ -52,6 +84,7 @@ void test_sync_root()
 	sync_root sr(folder_path);
 	sr.walk_file_system();
 	std::cout << sr.begin()->get_hash_digest() << std::endl;
+	//std::unique(sr.begin(), sr.end());
 }
 
 void test_boost_filesystem()
