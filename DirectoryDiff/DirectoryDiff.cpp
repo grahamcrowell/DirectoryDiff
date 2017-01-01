@@ -8,9 +8,9 @@
 
 void foo()
 {
-	//test_hash_path_operators();
+	//test_sync_root_sort();
 	
-	test_dir_cmp();
+	test_set_diff();
 }
 
 

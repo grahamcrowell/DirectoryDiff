@@ -21,8 +21,8 @@ public:
 
 	std::string get_hash_digest(void);
 
-	hash_cmp static get_hash_digest_cmp();
-	hash_cmp static get_full_path_cmp();
+	hash_cmp static get_hash_digest_lt();
+	hash_cmp static get_full_path_lt();
 	
 	~hash_path();
 protected:

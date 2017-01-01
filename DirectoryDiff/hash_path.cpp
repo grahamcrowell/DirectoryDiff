@@ -50,7 +50,7 @@ std::string hash_path::get_hash_digest()
 	}
 }
 
-hash_cmp hash_path::get_hash_digest_cmp()
+hash_cmp hash_path::get_hash_digest_lt()
 {
 	struct hash_digest_cmp
 	{
@@ -62,7 +62,7 @@ hash_cmp hash_path::get_hash_digest_cmp()
 	hash_cmp cmp = hash_digest_cmp();
 	return cmp;
 }
-hash_cmp hash_path::get_full_path_cmp()
+hash_cmp hash_path::get_full_path_lt()
 {
 	struct full_path_cmp
 	{

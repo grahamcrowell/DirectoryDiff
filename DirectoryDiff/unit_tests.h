@@ -3,35 +3,36 @@
 
 
 
-void test_dir_cmp()
+void test_set_diff()
 {
 	auto src_dir = std::string(R"(C:\Users\user\Desktop\sync_test\testSrc)");
 	sync_root src_sr(src_dir);
 	src_sr.walk_file_system();
-	std::sort(src_sr.begin(), src_sr.end(), hash_path::get_hash_digest_cmp());
+	std::sort(src_sr.begin(), src_sr.end(), hash_path::get_hash_digest_lt());
 	
 	auto dst_dir = std::string(R"(C:\Users\user\Desktop\sync_test\testDst)");
 	sync_root dst_sr(dst_dir);
 	dst_sr.walk_file_system();
-	std::sort(dst_sr.begin(), dst_sr.end(), hash_path::get_hash_digest_cmp());
+	std::sort(dst_sr.begin(), dst_sr.end(), hash_path::get_hash_digest_lt());
 	
 	std::vector<hash_path> diff;
-	std::set_symmetric_difference(src_sr.begin(), src_sr.end(), dst_sr.begin(), dst_sr.end(),
-		std::inserter(diff, diff.begin()),hash_path::get_hash_digest_cmp());
+	std::set_difference(src_sr.begin(), src_sr.end(), dst_sr.begin(), dst_sr.end(),
+		std::inserter(diff, diff.begin()),hash_path::get_hash_digest_lt());
+	
 	std::cout << src_sr << std::endl;
 	//for (auto i : src_sr._files) std::cout << i << ' ';
 	std::cout << "minus ";
 	//for (auto i : dst_sr._files) std::cout << i << ' ';
 	std::cout << dst_sr << std::endl;
-
 	std::cout << "is: ";
 
 	for (auto i : diff) std::cout << i.generic_string() << std::endl;
 	std::cout << '\n';
+	
 	std::cout << diff.size() << std::endl;
 }
 
-void test_hash_path_operators()
+void test_sync_root_sort()
 {
 	auto folder_path = std::string(R"(C:\Users\user\Desktop\sync_test\testSrc)");
 	sync_root sr(folder_path);
@@ -39,9 +40,9 @@ void test_hash_path_operators()
 	std::cout << sr << std::endl;
 	std::random_shuffle(sr.begin(), sr.end());
 	std::cout << sr << std::endl;
-	std::sort(sr.begin(), sr.end(), hash_path::get_hash_digest_cmp());
+	std::sort(sr.begin(), sr.end(), hash_path::get_hash_digest_lt());
 	std::cout << sr << std::endl;
-	std::sort(sr.begin(), sr.end(), hash_path::get_full_path_cmp());
+	std::sort(sr.begin(), sr.end(), hash_path::get_full_path_lt());
 	std::cout << sr << std::endl;
 }
 
