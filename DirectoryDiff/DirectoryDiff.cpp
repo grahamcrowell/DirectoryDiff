@@ -11,7 +11,8 @@ void foo()
 	//test_sync_root_sort();
 	
 	//test_set_diff();
-	perf_sync_root();
+	//perf_sync_root();
+	test_ram_size();
 }
 
 

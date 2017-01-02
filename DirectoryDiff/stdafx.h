@@ -79,5 +79,5 @@
  */
 #include "hash_path.h"
 #include "sync_root.h"
-
+#include "get_ram_size_bytes.h"
 // TODO: reference additional headers your program requires here

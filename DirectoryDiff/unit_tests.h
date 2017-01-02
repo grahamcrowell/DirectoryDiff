@@ -1,7 +1,11 @@
 #pragma once
 //#include "hash_path.h"
 
-
+void test_ram_size()
+{
+	std::cout << "RAM: " << get_ram_size_bytes() / pow(2, 20) << "MB" << std::endl;
+	//std::cout << "10% RAM: " << get_max_ram_footprint_bytes() / pow(2, 20) << "MB" << std::endl;
+}
 void perf_sync_root()
 {
 	clock_t start_time=0, end_time=0;
